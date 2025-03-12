@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Loading />
     <!-- 顶部导航栏 -->
     <Header />
     <!-- 主内容区域 -->
@@ -10,6 +11,7 @@
 </template>
 
 <script setup>
+import Loading from "@/components/Loading.vue";
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
 </script>
