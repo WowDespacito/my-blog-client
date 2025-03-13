@@ -1,8 +1,8 @@
 {
-  "name": "myHomePage",
+  "name": "my-blog",
   "author": "咫",
-  "github": "https://github.com/wowdespacito/myHomePage",
-  "home": "https://wowdespacito.pro",
+  "github": "https://github.com/wowdespacito/my-blog-client",
+  "home": "https://blog.wowdespacito.pro",
   "private": true,
   "version": "",
   "type": "module",
