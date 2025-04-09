@@ -22,6 +22,8 @@ import SocialLinks from "@/components/SocialLinks.vue";
   padding: 1rem 2rem;
   background-color: #ffffff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: 6%;
 
   .logo {
     font-size: 1.5rem;

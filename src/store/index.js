@@ -1,16 +1,14 @@
 import { defineStore } from "pinia";
 
-export const useStore = defineStore("main", {
-  state: () => ({
-    theme: "light",
-    fontSize: 16,
-  }),
+export const mainStore = defineStore("main", {
+  state: () => {
+    return {
+      LoadStatus: false
+    };
+  },
   actions: {
-    setTheme(newTheme) {
-      this.theme = newTheme;
-    },
-    setFontSize(newSize) {
-      this.fontSize = newSize;
-    },
+    setInnerWidth(width) {
+      this.innerWidth = width;
+    }
   },
 });
