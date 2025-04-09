@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <!-- 加载动画 -->
     <Loading />
     <!-- 加载完成 -->
     <Transition name="fade" mode="out-in">

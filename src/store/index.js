@@ -11,4 +11,11 @@ export const mainStore = defineStore("main", {
       this.innerWidth = width;
     }
   },
+  persist: {
+    key: "data",
+    storage: window.localStorage,
+    path: [
+      
+    ]
+  }
 });
