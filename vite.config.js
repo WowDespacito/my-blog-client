@@ -9,7 +9,8 @@ import Components from "unplugin-vue-components/vite";
 import viteCompression from "vite-plugin-compression";
 
 // https://vitejs.dev/config/
-export default ({ mode }) =>
+export default (
+  { mode }) =>
   defineConfig({
     plugins: [
       vue(),
@@ -92,6 +93,13 @@ export default ({ mode }) =>
       viteCompression(),
     ],
     server: {
+      proxy: {
+        '/api': {
+          target: 'https://blog.wowdespacito.pro',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api/, ''),
+        },
+      },
       port: "3000",
       open: true,
     },
