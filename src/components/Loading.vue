@@ -15,27 +15,8 @@
 </template>
 <script setup>
 import { mainStore } from '@/store';
-import { helloInit, checkDays } from "@/utils/getTime";
-
 const store = mainStore();
 const sitename = import.meta.env.VITE_SITE_NAME;
-
-// 加载完成事件
-const loadComplete = () => {
-    store.LoadStatus = true;
-    nextTick(() => {
-        // 欢迎提示
-        helloInit();
-        // 默哀模式
-        checkDays();
-    });
-}
-const load = () => {
-    // 执行加载完成事件
-    loadComplete();
-}
-load();
-
 </script>
 <style lang="scss" scoped>
 #loader-wrapper {
@@ -147,6 +128,10 @@ load();
         .loader-section {
             &.section-left {
                 transform: translateX(-100%);
+                transition: transform 0.5s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+            }
+            &.section-right {
+                transform: translateX(100%);
                 transition: transform 0.5s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
             }
         }

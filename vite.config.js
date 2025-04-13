@@ -95,7 +95,7 @@ export default (
     server: {
       proxy: {
         '/api': {
-          target: 'https://blog.wowdespacito.pro',
+          target: 'https://blog.wowdespacito.pro/api',
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, ''),
         },

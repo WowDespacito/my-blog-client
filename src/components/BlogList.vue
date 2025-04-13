@@ -5,35 +5,72 @@
       <p>这是我的博客，分享我的所思所想</p>
       <p>This is a place where I share my thoughts and experiences.</p>
     </div>
-  <div class="article-list">
+  <div class="article-list" v-infinite-scroll="loadMore" :infinite-scroll-disabled="isLoading || !hasMore">
     <div v-for="article in articles" :key="article.id" class="article-card">
       <h2>{{ article.title }}</h2>
-      <p>{{ article.summary }}</p>
       <div class="meta">
         <span>{{ article.date }}</span>
         <router-link :to="`/post/${article.id}`">Read More</router-link>
       </div>
     </div>
+
+    <!-- 加载中 -->
+    <div v-if="isLoading" class="loading-spinner">
+      <div class="spinner"></div>
+      <p>Loading...</p>
+    </div> 
+    <!-- 没有更多数据 -->
+    <div v-if="!hasMore " class="no-more-data">
+      <p>没有更多数据了</p>
+    </div>
+    <!-- 错误提示 -->
+    <div v-if="error" class="error-message">
+      {{ error }} <button @click="retryLoading">重试</button>
+    </div>
   </div>
+
 </template>
 
 <script setup>
 import { getBlogList } from '@/api';
-import { onMounted } from 'vue';
-const articles = [];
-const getList = async () =>{
-  try{
-    const re = await getBlogList();
-    console.log(re);
-  }catch(e){
-    console.log(e)
+import { ref, onMounted } from 'vue';
+
+const articles = ref([]);
+const isLoading = ref(false);
+const hasMore = ref(true);
+const pageNum = ref(1);
+const pageSize = ref(10);
+const total = ref(0);
+const error = ref(null);
+
+const loadMore = async () => {
+  if (isLoading.value || !hasMore.value) return;
+  isLoading.value = true;
+  try {
+    const response = await getBlogList({
+      pageNum: pageNum.value,
+      pageSize: pageSize.value
+    })
+
+    if (response.data.total){
+      articles.value = [...articles.value, ...response.data.items];
+      pageNum.value++;
+      hasMore.value = articles.value.length < response.data.total;
+      total.value = response.data.total;
+    } else {
+      hasMore.value = false;
+    }
+  } catch (err) {
+    console.error('Error loading more articles:', err);
+  } finally {
+    isLoading.value = false;
   }
 }
-  onMounted(
+onMounted(
     ()=>{
-      getList();
+      loadMore();
     }
-  )
+)
 </script>
 
 <style lang="scss" scoped>
@@ -85,6 +122,11 @@ const getList = async () =>{
         }
       }
     }
+  }
+  .loading-spinner, .no-more-data, .error-message {
+    text-align: center;
+    padding: 20px;
+    color: #999;
   }
 }
 </style>

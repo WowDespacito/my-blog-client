@@ -1,36 +1,45 @@
 <template>
-  <div id="app">
     <!-- 加载动画 -->
-    <Loading />
+    <Loading/>
+    <Background @loadComplete="loadComplete"/>
     <!-- 加载完成 -->
     <Transition name="fade" mode="out-in">
       <main id="main" v-if="store.LoadStatus">
         <!-- 顶部导航栏 -->
         <Header />
         <div class="container">
-          <section class="all">
-            <!-- 主内容区域 -->
-            <router-view />
-          </section>
+          <!-- 主内容区域 -->
+          <router-view />
         </div>
         <!-- 页脚 -->
         <Footer />
       </main>
     </Transition>
-  </div>
 </template>
 
 <script setup>
 import Loading from "@/components/Loading.vue";
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
+import Background from "@/components/Background.vue";
 import { mainStore } from "@/store";
 import { onBeforeUnmount, onMounted } from "vue";
 import config from "@/../package.json";
 import cursorInit from "@/utils/cursor";
-
+import { helloInit, checkDays } from "@/utils/getTime.js";
 
 const store = mainStore();
+// 加载完成事件
+const loadComplete = () => {
+  // 设置加载状态
+  store.setLoadStatus(true);
+  nextTick(() => {
+    // 欢迎提示
+    helloInit();
+    // 默哀模式
+    checkDays();
+  });
+};
 
 // 页面宽度
 const getWidth = () => {
@@ -87,20 +96,12 @@ onBeforeUnmount(() => {
   .container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     height: 90%;
     margin: 0 auto;
-
-    .all {
-      width: 100%;
-      height: 100%;
-      padding: 0 0.75rem;
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-    }
-
+    background-color: rgba(182, 182, 182, 0.8);
   }
 }
 </style>
