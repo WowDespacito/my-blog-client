@@ -77,7 +77,7 @@ onMounted(
 .intro {
     text-align: center;
     margin-bottom: 2rem;
-    line-break: 0.25rem;
+    //line-break: 0.25rem;
 
     h1 {
       font-size: 1.5rem;
