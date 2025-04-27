@@ -1,7 +1,6 @@
 <template>
   <div class="social-links">
-    <a href="https://github.com" target="_blank">GitHub</a>
-    <a href="https://twitter.com" target="_blank">Twitter</a>
+    <a href="https://github.com/wowdespacito" target="_blank">GitHub</a>
   </div>
 </template>
 

@@ -1,11 +1,5 @@
 <template>
-    <div class="post">
-        <h1>{{ article.title }}</h1>
-        <div class="meta">
-            <span>{{ article.createTime }}</span>
-        </div>
-        <div v-html="marked(article.content)"></div>
-    </div>
+  <div v-html="marked(article.content)"></div>
 </template>
 
 <script setup>
@@ -48,21 +42,5 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-.post {
-  padding: 2rem;
-  border-radius: 8px;
-  width: 100%;
-  height: 95%;
-  overflow-y: auto;
 
-  h1 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-  }
-
-  .meta {
-    color: black;
-    margin-bottom: 1rem;
-  }
-}
 </style>

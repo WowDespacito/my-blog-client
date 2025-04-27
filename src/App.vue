@@ -1,20 +1,23 @@
 <template>
+  <div id="main">
     <!-- 加载动画 -->
     <Loading/>
     <Background @loadComplete="loadComplete"/>
     <!-- 加载完成 -->
     <Transition name="fade" mode="out-in">
-      <main id="main" v-if="store.LoadStatus">
-        <!-- 顶部导航栏 -->
-        <Header />
-        <div class="container">
-          <!-- 主内容区域 -->
-          <router-view />
-        </div>
-        <!-- 页脚 -->
-        <Footer />
-      </main>
+      <el-container v-if="store.LoadStatus">
+        <el-header>
+          <Header/>
+        </el-header>
+        <el-main>
+          <router-view/>
+        </el-main>
+        <el-footer>
+          <Footer/>
+        </el-footer>
+      </el-container>
     </Transition>
+  </div>
 </template>
 
 <script setup>
@@ -82,26 +85,42 @@ onBeforeUnmount(() => {
 
 <style lang="scss">
 #main {
+  display: grid;
+  place-items: center;
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   transform: scale(1);
   transform-origin: center;
   transition: transform 0.5s;
-  animation: fade-blur-main-in 0.65s cubhic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation: fade-blur-main-in 0.65s forwards;
   animation-delay: 0.5s;
 
-  .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  .el-container {
+    display: grid;
+    place-items: center;
     width: 100%;
-    height: 90%;
-    margin: 0 auto;
+    height: 100%;
+
+  }
+
+  .el-header {
+    width: 100%;
+    height: 8vh;
+  }
+
+  .el-footer {
+    width: 100%;
+    height: 5vh;
+  }
+
+  .el-main{
+    width: 100%;
+    height: 87vh;
     background-color: rgba(182, 182, 182, 0.8);
+    overflow-y: auto;
   }
 }
 </style>

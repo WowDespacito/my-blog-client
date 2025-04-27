@@ -1,5 +1,5 @@
 <template>
-  <header class="header">
+  <div class="header">
     <div class="logo">My Blog</div>
     <nav class="nav">
       <router-link to="/">Home</router-link>
@@ -7,7 +7,7 @@
       <router-link to="/settings">Settings</router-link>
     </nav>
     <SocialLinks />
-  </header>
+  </div>
 </template>
 
 <script setup>
@@ -20,10 +20,10 @@ import SocialLinks from "@/components/SocialLinks.vue";
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  //background-color: rgba(0,0,0,0.1);
+  //box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: 100%;
-  height: 6%;
+  height: auto;
 
   .logo {
     font-size: 1.5rem;

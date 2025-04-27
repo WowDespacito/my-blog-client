@@ -1,5 +1,6 @@
 <template>
   <div class="post-container">
+    <el-button icon="el-icon-back" @click="this.$router.back()"></el-button>
     <BlogDetail />
   </div>
 </template>
@@ -11,8 +12,9 @@ import BlogDetail from "@/components/BlogDetail.vue";
 <style lang="scss" scoped>
 .post-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   height: 100%;
   width: 100%;
 }

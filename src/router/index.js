@@ -5,7 +5,13 @@ import About from "@/views/About.vue";
 import Settings from "@/views/Settings.vue";
 
 const routes = [
-  { path: "/", component: Home },
+  {
+    path: "/",
+    component: Home,
+    meta: {
+      keepalive: true
+    }
+    },
   { path: "/post/:id", component: Post },
   { path: "/about", component: About },
   { path: "/settings", component: Settings },
