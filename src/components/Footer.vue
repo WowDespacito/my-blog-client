@@ -22,6 +22,7 @@
     //height: 4%;
   
     .copyright {
+      font-size: 1.5rem;
       color: #666;
     }
   }

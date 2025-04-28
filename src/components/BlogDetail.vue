@@ -1,9 +1,9 @@
 <template>
-  <div v-html="marked(article.content)"></div>
+  <div class="content-box" v-html="marked(article.content)"></div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import {ref} from "vue";
 import { useRoute } from "vue-router";
 import { getBlogDetail } from "@/api"; 
 import { marked } from "marked";
@@ -30,17 +30,18 @@ const loadBlogDetail = async (id) => {
         console.error("Error fetching blog detail:", error);
     }
 }
-
-onMounted(() => {
-    const id = route.params.id;
-    if (id) {
-        loadBlogDetail(id);
-    } else {
-        console.error("No blog ID provided");
-    }
-});
+watch(
+    () => route.params.id,
+    (value)=>{
+      loadBlogDetail(value);
+    },
+    {immediate: true}
+)
 </script>
 
 <style lang="scss" scoped>
-
+.content-box {
+  width: 100%;
+  height: 100%;
+}
 </style>

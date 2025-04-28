@@ -83,7 +83,7 @@ onBeforeUnmount(() => {
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #main {
   display: grid;
   place-items: center;
@@ -97,10 +97,11 @@ onBeforeUnmount(() => {
   transition: transform 0.5s;
   animation: fade-blur-main-in 0.65s forwards;
   animation-delay: 0.5s;
-
   .el-container {
-    display: grid;
-    place-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between ;
+    place-items: end;
     width: 100%;
     height: 100%;
 
@@ -108,18 +109,17 @@ onBeforeUnmount(() => {
 
   .el-header {
     width: 100%;
-    height: 8vh;
+    height: 2.5rem;
   }
 
   .el-footer {
     width: 100%;
-    height: 5vh;
+    height: 2.5rem;
   }
 
   .el-main{
     width: 100%;
-    height: 87vh;
-    background-color: rgba(182, 182, 182, 0.8);
+    height: calc(100vh - 5rem);
     overflow-y: auto;
   }
 }
