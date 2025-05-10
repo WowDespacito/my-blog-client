@@ -1,11 +1,10 @@
+@charset "utf-8";
 /*
 作者: imsyy
 主页：https://www.imsyy.top/
 GitHub：https://github.com/imsyy/home
 版权所有，请勿删除
 */
-
-@charset "utf-8";
 
 /*全局样式*/
 
@@ -27,7 +26,7 @@ p {
   padding: 0;
   user-select: none;
   text-decoration: none;
-  color: #fff;
+  //color: #fff;
   box-sizing: border-box;
 
   &:hover {
@@ -35,18 +34,18 @@ p {
   }
 }
 
-// 字体文件
-@font-face {
-  font-family: "Pacifico-Regular";
-  font-display: swap;
-  src: url("/font/Pacifico-Regular.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "UnidreamLED";
-  font-display: swap;
-  src: url("/font/UnidreamLED.ttf") format("truetype");
-}
+//// 字体文件
+//@font-face {
+//  font-family: "Pacifico-Regular";
+//  font-display: swap;
+//  src: url("/font/Pacifico-Regular.ttf") format("truetype");
+//}
+//
+//@font-face {
+//  font-family: "UnidreamLED";
+//  font-display: swap;
+//  src: url("/font/UnidreamLED.ttf") format("truetype");
+//}
 
 // 基础样式
 #app {
@@ -108,7 +107,7 @@ p {
       background-color: #efefef;
       border-radius: 6px;
       text-align: center;
-      font-family: "UnidreamLED";
+      font-family: "UnidreamLED", serif;
       span {
         color: #564d59;
         font-size: 0.9rem;

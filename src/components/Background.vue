@@ -2,12 +2,6 @@
     <div :class="store.backgroundShow ? 'cover show' : 'cover'">
         <img v-show="store.imgLoadStatus" :src="bgUrl" class="bg" alt="cover" @load="imgLoadComplete"
             @error.once="imgLoadError" @animationend="imgAnimationEnd" style="" />
-        <!-- <div :class="store.backgroundShow ? 'cover hidden' : 'gray'" />
-        <Transition name="fade" mode="out-in">
-            <a v-if="store.backgroundShow" class="down" :href="bgUrl" target="_blank">
-                下载壁纸
-            </a>
-        </Transition> -->
     </div>
 </template>
 <script setup>
@@ -24,7 +18,7 @@ const bgRandom = Math.floor(Math.random() * 10 + 1);
 
 // 更换壁纸链接
 const changeBg = (type) => {
-    if (type == 0) {
+    if (type === 0) {
         bgUrl.value = `/images/background${bgRandom}.jpg`;
     } else {
         console.error('暂不支持其他壁纸链接,已切换回type=0')
@@ -136,7 +130,6 @@ onBeforeUnmount(() => {
         left: 0;
         right: 0;
         margin: 0 auto;
-        display: block;
         padding: 20px 26px;
         border-radius: 8px;
         background-color: #00000030;

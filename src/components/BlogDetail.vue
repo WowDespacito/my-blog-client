@@ -1,12 +1,26 @@
 <template>
-  <div class="content-box" v-html="marked(article.content)"></div>
+  <div class="blogDetail-view">
+    <div class="mdContent" v-html="compileMdContent(article.content)"></div>
+  </div>
 </template>
 
 <script setup>
 import {ref} from "vue";
 import { useRoute } from "vue-router";
-import { getBlogDetail } from "@/api"; 
-import { marked } from "marked";
+import { getBlogDetail } from "@/api";
+import {marked} from "marked";
+import hljs from 'highlight.js';
+import 'highlight.js/styles/github.css';
+
+const compileMdContent = (mdContent) => {
+    marked.setOptions({
+      highlight: (code, language) => {
+        const validLang = hljs.getLanguage(language) ? language : 'plaintext';
+        return hljs.highlight(code, {language: validLang}).value;
+      }
+    });
+    return marked(mdContent);
+};
 
 const route = useRoute();
 const article = ref({
@@ -40,8 +54,11 @@ watch(
 </script>
 
 <style lang="scss" scoped>
-.content-box {
+.blogDetail-view {
   width: 100%;
   height: 100%;
+  .MdContent {
+    color: rgba(0,0,0,0.5);
+  }
 }
 </style>

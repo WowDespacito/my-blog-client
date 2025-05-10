@@ -97,6 +97,8 @@ onBeforeUnmount(() => {
   transition: transform 0.5s;
   animation: fade-blur-main-in 0.65s forwards;
   animation-delay: 0.5s;
+  overflow: auto;
+
   .el-container {
     display: flex;
     flex-direction: column;
@@ -109,18 +111,26 @@ onBeforeUnmount(() => {
 
   .el-header {
     width: 100%;
-    height: 2.5rem;
+    padding: 0;
+    max-height: 5rem;
+    overflow: hidden;
   }
 
   .el-footer {
     width: 100%;
-    height: 2.5rem;
+    padding: 0;
+    max-height: 5rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
   }
 
   .el-main{
     width: 100%;
-    height: calc(100vh - 5rem);
+    height: calc(100vh - 10rem);
     overflow-y: auto;
+    padding: 0 0;
   }
 }
 </style>

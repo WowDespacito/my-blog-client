@@ -27,3 +27,14 @@ export const mainStore = defineStore("main", {
     storage: sessionStorage // 改为会话存储
   }
 });
+
+export const blogListStore = defineStore("bloglist", {
+  state: ()=>({
+    scrollY: 0,
+  }),
+  actions: {
+    setScrollPosition(y){
+      this.scrollY = y;
+    }
+  }
+})

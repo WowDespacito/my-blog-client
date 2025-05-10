@@ -1,5 +1,5 @@
 <template>
-  <div v-infinite-scroll="loadMore" :infinite-scroll-disabled="isLoading || !hasMore" style="overflow: auto" >
+  <div class="blogList-view" v-infinite-scroll="loadMore" :infinite-scroll-disabled="isLoading || !hasMore"  >
     <el-menu :router="true" :default-active="$route.params.id" v-for="article in articles" :key="article.id">
       <el-menu-item :index="`/post/${article.id}`">
         {{article.title}}
@@ -50,37 +50,13 @@ onMounted(
 </script>
 
 <style lang="scss" scoped>
-.article-list {
-    h2 {
-      color: black;
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-    }
+.blogList-view {
+  overflow: auto;
+  width: 98%;
+  height: 100%;
 
-    p {
-      color: #666;
-      margin-bottom: 1rem;
-    }
-
-    .meta {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: #999;
-
-      a {
-        color: #007bff;
-        text-decoration: none;
-
-        &:hover {
-          text-decoration: underline;
-        }
-      }
-  }
-  .loading-spinner, .no-more-data, .error-message {
-    text-align: center;
-    padding: 20px;
-    color: #999;
+  .el-menu {
+    background-color: rgba(255, 255, 255, 0);
   }
 }
 </style>

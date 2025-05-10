@@ -1,6 +1,10 @@
 <template>
-  <div style="width: 100%;height: 100%; overflow: auto">
-        <div class="article-list" v-infinite-scroll="loadMore" :infinite-scroll-disabled="isLoading || !hasMore">
+  <div class="home-view">
+        <div
+          id="article-list"
+          class="article-list"
+          v-infinite-scroll="handleScroll"
+          :infinite-scroll-disabled="isLoading || !hasMore">
           <div v-for="article in articles" :key="article.id" class="article-card">
             <h2>{{ article.title }}</h2>
             <div class="meta">
@@ -28,7 +32,7 @@
 
 <script setup>
 import { getBlogList } from '@/api';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted } from "vue";
 
 const articles = ref([]);
 const isLoading = ref(false);
@@ -38,8 +42,7 @@ const pageSize = ref(10);
 const total = ref(0);
 const error = ref(null);
 
-const loadMore = async () => {
-  if (isLoading.value || !hasMore.value) return;
+const loadData = async () => {
   isLoading.value = true;
   try {
     const response = await getBlogList({
@@ -50,7 +53,6 @@ const loadMore = async () => {
 
     if (response.data.total){
       articles.value = [...articles.value, ...response.data.items];
-      pageNum.value++;
       hasMore.value = articles.value.length < response.data.total;
       total.value = response.data.total;
     } else {
@@ -62,63 +64,75 @@ const loadMore = async () => {
     isLoading.value = false;
   }
 }
+
+// 翻页逻辑
+const handleScroll = () => {
+  if (hasMore.value && !isLoading.value) {
+    pageNum.value++;
+    loadData();
+  }
+}
 onMounted(
-    ()=>{
-      loadMore();
+    async ()=>{
+      // 加载第一页
+      await loadData();
     }
 )
 </script>
 
 <style lang="scss" scoped>
-.el-container {
+.home-view {
   width: 100%;
   height: 100%;
-}
-.article-list {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  .article-card {
-    width: 70%;
-    background-color: #ffffff;
-    padding: 1.5rem;
-    margin-bottom: 1rem;
-    border-radius: 8px;
-    //box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow-y: scroll;
 
-    h2 {
-      color: black;
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    p {
-      //color: #666;
+  .article-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    .article-card {
+      width: 70%;
+      background-color: rgba(255, 255, 255, 0.7);
+      padding: 1.5rem;
       margin-bottom: 1rem;
-    }
+      border-radius: 8px;
+      //box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
-    .meta {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      //color: #999;
+      h2 {
+        color: black;
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
 
-      a {
-        color: #007bff;
-        text-decoration: none;
+      p {
+        //color: #666;
+        margin-bottom: 1rem;
+      }
 
-        &:hover {
-          text-decoration: underline;
+      .meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        //color: #999;
+
+        a {
+          color: #007bff;
+          text-decoration: none;
+
+          &:hover {
+            text-decoration: underline;
+          }
         }
       }
     }
-  }
-  .loading-spinner, .no-more-data, .error-message {
-    text-align: center;
-    padding: 20px;
-    //color: #999;
+    .loading-spinner, .no-more-data, .error-message {
+      text-align: center;
+      padding: 20px;
+      //color: #999;
+    }
   }
 }
+
 </style>

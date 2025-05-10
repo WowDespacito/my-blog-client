@@ -15,14 +15,15 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    //background-color: rgba(0,0,0,0.1);
-    //box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-    //margin-top: auto;
     width: 100%;
-    //height: 4%;
+    height: 90%;
+    background-color: white;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding: 10px 10px;
   
     .copyright {
-      font-size: 1.5rem;
+      font-size: 1rem;
       color: #666;
     }
   }

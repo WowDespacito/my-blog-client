@@ -3,8 +3,8 @@
     <div class="logo">My Blog</div>
     <nav class="nav">
       <router-link to="/">Home</router-link>
-      <router-link to="/about">About</router-link>
-      <router-link to="/settings">Settings</router-link>
+<!--      <router-link to="/about">About</router-link>-->
+<!--      <router-link to="/settings">Settings</router-link>-->
     </nav>
     <SocialLinks />
   </div>
@@ -19,14 +19,15 @@ import SocialLinks from "@/components/SocialLinks.vue";
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
-  //background-color: rgba(0,0,0,0.1);
-  //box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: 100%;
-  height: auto;
+  height: 90%;
+  background-color: white;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding: 10px 10px;
 
   .logo {
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: bold;
     color: #333;
   }
