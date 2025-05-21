@@ -42,12 +42,16 @@ const goBack = () => {
     .el-aside {
       width: 20%;
       height: 100%;
-      display: grid;
-      place-items: center;
+      display: flex;
+      flex-direction: column;
       margin: 5px;
       padding: 10px;
       background-color: rgba(255, 255, 255, 0.8);
       border-radius: 5px;
+
+      .el-page-header {
+        height: 5%;
+      }
     }
 
     .el-main{
