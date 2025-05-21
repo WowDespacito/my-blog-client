@@ -1,10 +1,11 @@
 // 该文件用于存放所有的 API 接口
 // 获取blogList
+
 export const getBlogList = async (params = {}) =>{
   try{
     const quaryString = new URLSearchParams(params).toString();
     const res = await fetch(
-      `http://localhost:3000/api/getList?${quaryString}`,{
+      `https://blog.wowdespacito.pro/api/getList?${quaryString}`,{
         method: 'GET'
       }
     );
@@ -19,7 +20,7 @@ export const getBlogList = async (params = {}) =>{
 export const getBlogDetail = async (id) =>{
   try{
     const res = await fetch(
-      `http://localhost:3000/api/getDetail?id=${id}`,{
+      `https://blog.wowdespacito.pro/api/getDetail?id=${id}`,{
         method: 'GET'
       }
     );
